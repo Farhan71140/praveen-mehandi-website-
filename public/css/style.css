@@ -166,3 +166,18 @@ footer{padding:36px var(--pad-r) calc(40px + env(safe-area-inset-bottom)) var(--
   .info{padding:10px 2px 0}
   .hero h1{font-size:clamp(2.7rem,13vw,3.8rem)}
 }
+
+/* show the whole hero photo, no cropping */
+.hero::after{display:none}
+.hero-media{top:18px;bottom:18px;left:auto;right:max(18px,calc((100% - 1240px)/2));width:auto;height:auto;aspect-ratio:2/3;max-width:50%}
+.hero-media img{object-fit:contain;object-position:100% 50%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%);mask-image:linear-gradient(90deg,transparent,#000 12%)}
+@media(max-width:900px){
+  .hero-media{position:relative;inset:auto;width:100%;max-width:calc(80svh * 2 / 3);height:auto;margin:0 auto}
+  .hero-media img{height:100%;object-position:50% 50%;-webkit-mask-image:linear-gradient(#000 82%,transparent);mask-image:linear-gradient(#000 82%,transparent)}
+  .hero .wrap{padding-top:0;margin-top:-56px}
+}
+@media(max-width:900px){
+  .hero .wrap{display:flex;flex-direction:column;margin-top:0;padding-top:18px}
+  .hero-media{order:-1;flex:none;align-self:center;z-index:0}
+  .hero .wrap>div:first-child{margin:-24px auto 0}
+}
